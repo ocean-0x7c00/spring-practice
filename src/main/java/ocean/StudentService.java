@@ -3,18 +3,28 @@ package ocean;
 import java.sql.*;
 
 /**
- * 最原始的方式，实现对表student的增删改查
+ * 最原始的方式，实现对表的增删改查
  * <p>
  * 分析：看看是否符合面向对象的原则
  * 存在的问题：
  * 1. 代码大量重复，特别是资源关闭的代码
  * 2. 不满足开闭原则
  * 3. DML、DQL与数据库连接、管理混在一起，不满足单一职责
+ * 4. 频繁的创建数据库连接  （为什么说创建数据库连接是一件很耗性能的事）
+ * <p>
+ * DDL、DML、DQL、DCL
+ * https://www.jianshu.com/p/671a2d54dca0
  *
  * @author yancy
  * @date 2019/12/12
  */
 public class StudentService {
+    public void save1(){
+
+        String sql="";
+        //todo execute sql 返回执行结果
+
+    }
     public void save(Student stu) {
         String sql = "INSERT INTO student(name,age) values(?,?)";
         Connection conn = null;
@@ -71,7 +81,7 @@ public class StudentService {
 
             //获取数据库连接
             conn = DriverManager.getConnection
-                    ("jdbc:mysql://localhost:3306/demo", "root", "271828lhy");
+                    ("jdbc.properties:mysql://localhost:3306/demo", "root", "271828lhy");
 
             //创建语句对象
             st = conn.prepareStatement(sql);
@@ -111,7 +121,7 @@ public class StudentService {
 
             //获取数据库连接
             conn = DriverManager.getConnection
-                    ("jdbc:mysql://localhost:3306/demo", "root", "271828lhy");
+                    ("jdbc.properties:mysql://localhost:3306/demo", "root", "271828lhy");
 
             //创建语句对象
             st = conn.prepareStatement(sql);
@@ -154,7 +164,7 @@ public class StudentService {
 
             //获取数据库连接
             conn = DriverManager.getConnection
-                    ("jdbc:mysql://localhost:3306/demo", "root", "271828lhy");
+                    ("jdbc.properties:mysql://localhost:3306/demo", "root", "271828lhy");
 
             //创建语句对象
             st = conn.prepareStatement(sql);
